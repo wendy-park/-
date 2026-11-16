@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#faf8f5">
+<title>요리 레시피 · 인스타 저장함</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <h1>요리 레시피</h1>
+    <p class="sub" id="sub">인스타 저장함에서 모은 레시피</p>
+  </div>
+</header>
+
+<div class="sticky">
+  <div class="sticky-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      <input id="q" type="search" placeholder="요리 이름이나 재료로 찾기" autocomplete="off" enterkeyhint="search">
+      <button id="clear" class="clear" aria-label="검색 지우기">✕</button>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-tab="all" role="tab">전체</button>
+      <button class="tab" data-tab="fav" role="tab">즐겨찾기 <span id="favCount"></span></button>
+    </div>
+    <nav class="cats" id="cats"></nav>
+  </div>
+</div>
+
+<main id="list" class="list"></main>
+<p id="empty" class="empty" hidden>조건에 맞는 레시피가 없어요.<br><span>다른 재료나 이름으로 찾아보세요.</span></p>
+
+<footer class="foot">
+  <p>인스타그램 저장 컬렉션 <b>cooking</b>을 옮겨 담았어요. 원문 캡션은 자동 정리되어 일부 표현이 다를 수 있습니다.</p>
+</footer>
+
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-head">
+    <button id="back" class="back" aria-label="뒤로">←</button>
+    <button id="favBtn" class="fav big" aria-label="즐겨찾기">♡</button>
+  </div>
+  <div id="sheetBody" class="sheet-body"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
