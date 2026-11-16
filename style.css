@@ -1,9 +1,10 @@
 :root{
   --bg:#faf8f5; --card:#fff; --ink:#1c1b1a; --mute:#8c857e; --line:#eae4dc;
   --accent:#df5133; --accent-soft:#fdeee9; --pill:#f3efe9;
+  color-scheme: light;
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-html,body{margin:0; padding:0}
+html,body{margin:0; padding:0; -webkit-text-size-adjust:100%}
 body{
   background:var(--bg); color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
