@@ -63,6 +63,7 @@ button{font:inherit; color:inherit; background:none; border:0; padding:0; cursor
 .sheet-head{position:sticky; top:0; z-index:2; background:rgba(250,248,245,.92); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:space-between; padding:10px 14px}
 .back{font-size:22px; padding:4px 10px; color:var(--ink)}
 .d-title{font-size:23px; line-height:1.32; margin:6px 0 10px; word-break:keep-all}
+.d-sub{margin:-4px 0 10px; font-size:13px; line-height:1.5; color:var(--mute); word-break:keep-all}
 .d-meta{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:13px; color:var(--mute)}
 .pill{font-size:12px; padding:4px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-weight:600}
 .sec{margin-top:26px}

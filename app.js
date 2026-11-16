@@ -8,6 +8,7 @@
       url: 'https://www.instagram.com/' + (r.t || 'reel') + '/' + r.k + '/',
       caption: r.cap || '',
       title: r.title || '레시피',
+      orig: r.orig || '',
       cat: r.cat || '한식',
       ing: r.ing || [],
       steps: r.steps || [],
@@ -91,6 +92,7 @@
 
     body.innerHTML =
       '<h1 class="d-title">' + esc(r.title) + '</h1>' +
+      (r.orig && r.orig !== r.title ? '<p class="d-sub">원문: ' + esc(r.orig) + '</p>' : '') +
       '<div class="d-meta"><span class="pill">' + esc(r.cat) + '</span><span>@' + esc(r.author) + '</span></div>' +
       '<section class="sec"><h2><span>재료</span><span class="progress" id="prog"></span></h2>' + ingHTML + '</section>' +
       '<section class="sec"><h2><span>조리 순서</span></h2>' + stepsHTML + '</section>' +
