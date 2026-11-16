@@ -22,17 +22,13 @@
       <input id="q" type="search" placeholder="요리 이름이나 재료로 찾기" autocomplete="off" enterkeyhint="search">
       <button id="clear" class="clear" aria-label="검색 지우기">✕</button>
     </div>
-    <div class="tabs" role="tablist">
-      <button class="tab on" data-tab="all" role="tab">전체</button>
-      <button class="tab" data-tab="fav" role="tab">즐겨찾기 <span id="favCount"></span></button>
-    </div>
+    <div class="tabs" role="tablist" hidden></div>
     <nav class="cats" id="cats"></nav>
   </div>
 </div>
 
 <main id="list" class="list"></main>
 <p id="empty" class="empty" hidden>조건에 맞는 레시피가 없어요.<br><span>다른 재료나 이름으로 찾아보세요.</span></p>
-
 <footer class="foot">
   <p>인스타그램 저장 컬렉션 <b>cooking</b>을 옮겨 담았어요. 원문 캡션은 자동 정리되어 일부 표현이 다를 수 있습니다.</p>
 </footer>

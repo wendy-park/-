@@ -22,7 +22,7 @@
   function loadChecks(k) { try { return JSON.parse(localStorage.getItem('recipes.check.' + k) || '{}') || {}; } catch (e) { return {}; } }
   function saveChecks(k, o) { try { localStorage.setItem('recipes.check.' + k, JSON.stringify(o)); } catch (e) {} }
 
-  var CAT_LIST = ['전체', '한식', '양식', '중식·일식', '디저트·베이킹', '다이어트·초간단'];
+  var CAT_LIST = ['한식', '양식', '중식·일식', '디저트·베이킹', '다이어트·초간단'];
   var state = { q: '', cat: '전체', tab: 'all' };
 
   var $ = function (s) { return document.querySelector(s); };
@@ -62,10 +62,12 @@
     var rows = filtered();
     listEl.innerHTML = rows.map(cardHTML).join('');
     emptyEl.hidden = rows.length > 0;
-    $('#favCount').textContent = favCount() || '';
     $('#sub').textContent = '인스타 저장함에서 모은 레시피 ' + RECIPES.length + '개';
-    catsEl.innerHTML = CAT_LIST.map(function (c) {
-      return '<button class="cat ' + (state.cat === c ? 'on' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+    var n = favCount();
+    var favChip = '<button class="cat favchip ' + (state.tab === 'fav' ? 'on' : '') + '" data-tab="' + (state.tab === 'fav' ? 'all' : 'fav') + '">♥ 즐겨찾기' + (n ? ' ' + n : '') + '</button>';
+    var allChip = '<button class="cat ' + (state.tab === 'all' && state.cat === '전체' ? 'on' : '') + '" data-cat="전체">전체</button>';
+    catsEl.innerHTML = allChip + favChip + CAT_LIST.map(function (c) {
+      return '<button class="cat ' + (state.tab === 'all' && state.cat === c ? 'on' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
     }).join('');
   }
 
@@ -132,18 +134,22 @@
       saveFavs();
       favEl.classList.toggle('on', !!favs[k]);
       favEl.textContent = favs[k] ? '♥' : '♡';
-      $('#favCount').textContent = favCount() || '';
+      var chip = catsEl.querySelector('[data-tab]');
+      if (chip) chip.textContent = '♥ 즐겨찾기' + (favCount() ? ' ' + favCount() : '');
       if (state.tab === 'fav') render();
       return;
     }
-    var catBtn = e.target.closest('[data-cat]');
-    if (catBtn) { state.cat = catBtn.getAttribute('data-cat'); render(); return; }
-
     var tabBtn = e.target.closest('[data-tab]');
     if (tabBtn) {
       state.tab = tabBtn.getAttribute('data-tab');
-      var tabs = document.querySelectorAll('.tab');
-      for (var t = 0; t < tabs.length; t++) tabs[t].classList.toggle('on', tabs[t] === tabBtn);
+      state.cat = '전체';
+      render();
+      return;
+    }
+    var catBtn = e.target.closest('[data-cat]');
+    if (catBtn) {
+      state.cat = catBtn.getAttribute('data-cat');
+      state.tab = 'all';
       render();
       return;
     }
@@ -179,7 +185,6 @@
     saveFavs();
     this.classList.toggle('on', !!favs[current.key]);
     this.textContent = favs[current.key] ? '♥' : '♡';
-    $('#favCount').textContent = favCount() || '';
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !sheet.hidden) closeDetail();
